@@ -1,0 +1,17 @@
+.logo {
+  &__image {
+    color: $color-first;
+    display: inline-flex;
+    font-size: 400%;
+    text-shadow: $logo-image-shadow;
+    color: $color-first;
+  }
+
+  &__name {
+    font-size: 30px;
+    text-shadow: $logo-text-shadow;
+    display: inline-flex;
+    color: $color-first;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,71 @@
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $color-first; 
+  border-radius: 10px;
+}
+
+.filters {
+  background-color: $color-background-dark;
+  width: 320px;
+  display: inline-flex;
+  flex-direction: column;
+  border: 2px solid $color-first;
+  align-items: center;
+  border: 2px solid $color-first;
+  border-radius: 15px;
+  height: max-content;
+  &__scroll {
+    overflow-y: scroll;
+  }
+  &__wrapper {
+    overflow: hidden;
+    border-radius: 15px;
+    display: inline-block;
+    width: 300px;
+    margin-bottom: 15px;
+  }
+  &__cards {
+    display: flex;
+    flex-direction: column;
+  }
+  &__card {
+    border: none;
+    max-width: 300px;
+    background-color: $color-secondary;
+    border: 1px solid $color-first;
+    border-radius: 15px;
+    max-height: 200px;
+  }
+  &__header {
+    text-align: center;
+    color: $color-first;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: $color-dark;
+    margin-top: 0;
+    border: 1px solid $color-first;
+    border-radius: 13px 13px 0 0px;
+  }
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 0 10px;
+  }
+  &__quantity {
+    color: $color-first-light;
+    font-size: 16px;
+  }
+  &__checkbox {
+    color: $color-first-light;
+    font-size: 16px;
+  }
+  &__input, &__label {
+    cursor: pointer;
+  }
+}  

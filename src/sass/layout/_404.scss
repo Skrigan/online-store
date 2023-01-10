@@ -1,0 +1,20 @@
+.page-404 {
+  background-image: url("https://online-store-rs.netlify.app/assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: calc(100vh - 175px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__content {
+    font-size: 30px;
+    border-radius: 15px;
+    border: 2px solid $color-first;
+    background-color: $color-dark;
+    color: $color-first;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+  }
+}

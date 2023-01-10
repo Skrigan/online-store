@@ -1,0 +1,36 @@
+.slider {
+  color: $color-first-light;
+  padding: 0 10px;
+  &__data {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
+  &__control {
+    position: relative;
+    min-height: 20px;
+  }
+  &__input {
+    -webkit-appearance: none; 
+    appearance: none;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    background-color: $color-first;
+    pointer-events: none;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      pointer-events: all;
+      width: 16px;
+      height: 16px;
+      background-color: $color-dark;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px $color-first;
+      cursor: pointer;
+    }
+    &_first {
+      height: 0;
+      z-index: 1;
+    }
+  }
+}

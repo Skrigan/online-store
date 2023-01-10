@@ -1,0 +1,44 @@
+html,
+body,
+main {
+  height: 100%;
+}
+.body {
+  background-color: $color-background;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: $content-width;
+  margin: auto;
+  box-sizing: border-box;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  /*
+  @include respond-to('l') {
+      padding-left: 3rem;
+      padding-right: 3rem;
+  }
+
+  @include respond-to('m') {
+      padding-left: 2rem;
+      padding-right: 2rem;
+  }
+
+  @include respond-to('s') {
+      padding-left: 1rem;
+      padding-right: 1rem;
+  }
+*/
+}

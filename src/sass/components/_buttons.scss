@@ -1,0 +1,35 @@
+.button {
+  appearance: none;
+  border: 1px solid $color-first;
+  font-size: 18px;
+  color: $color-first;
+  margin: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.button-plus,
+.button-minus {
+  border-radius: 50%;
+  font-size: 16px;
+  color: #ffa500;
+  border: 2px solid #ffa500;
+  background-color: #301810;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__button {
+  appearance: none;
+  font-size: 20px;
+  margin-top: 15px;
+  border-radius: 15px;
+  padding: 5px 20px;
+  border: 2px solid $color-first;
+  color: $color-first;
+  background-color: $color-background;
+}
