@@ -1,0 +1,15 @@
+.breadcrumbs {
+  display: flex;
+  margin: 20px auto;
+  justify-content: space-between;
+  &__item {
+     color: $color-first-light;
+     position: relative;
+     &:not(:last-of-type):after {
+      content: '>>';
+      position: relative;
+      left: 10px;
+      color: $color-first;
+     }
+  }
+}  

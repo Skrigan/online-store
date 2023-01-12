@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <title>Online-Store</title>
+</head>
+<body class="body">
+  <header class="header">
+    <div class="header__container container">
+      <div class="header__logo logo">
+        <div class="logo__image">🛍</div>
+        <h1 class="logo__name">Online Store</h1>
+      </div>
+
+      <div class="header__price price">
+        <span class="price__text">Cart total:</span>
+        <span class="price__number">€0.00</span>
+      </div>
+
+      <div class="header__cart cart">
+        <img class="cart__image" src="./assets/favicon.ico" alt="cart">
+        <div class="cart__quantity">0</div>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="modal">
+      <h2 class="modal__header">Personal details</h2>
+      <form action="" class="modal__form">
+        <input type="text" class="modal__input" placeholder="Name">
+        <input type="text" class="modal__input" placeholder="Phone number">
+        <input type="text" class="modal__input" placeholder="Delivery address">
+        <input type="text" class="modal__input" placeholder="Email">
+        <div class="modal__details">
+          <p class="modal__credit">Credit card details</p>
+          <div class="modal__card">
+            <div class="modal__card-wrapper">
+              <div class="modal__image-wrapper">
+                <img class="modal__image"
+                  src="https://i.guim.co.uk/img/media/b73cc57cb1d46ae742efd06b6c58805e8600d482/16_0_2443_1466/master/2443.jpg?width=700&quality=85&auto=format&fit=max&s=fb1dca6cdd4589cd9ef2fc941935de71"
+                  alt="">
+              </div>
+              <input class="modal__input-card long-form" type="text" placeholder="Card number">
+            </div>
+            <div class="modal__card-wrapper">
+              <div>
+                <span class="modal__text">Valid:</span>
+                <input class="modal__input-card short-form" type="text" placeholder="Valid Thru">
+              </div>
+              <div>
+                <span class="modal__text">CW:</span>
+                <input class="modal__input-card short-form" type="text" placeholder="Code">
+              </div>
+            </div>
+          </div>
+          <button class="modal__button">CONFIRM</button>
+        </div>
+      </form>
+      </h2>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+.page-cart {
+  display: flex;
+  background-image: url("https://online-store-rs.netlify.app/assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: calc(100%);
+  padding-top: 20px;
+  justify-content: space-between;
+  gap: 20px;
+}
+.page-cart .cart {
+  width: 1200px;
+  max-width: 1200px;
+  &__header {
+    background-color: $color-dark;
+    border: 1px solid $color-first;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__about {
+    color: $color-first;
+    font-size: 22px;
+    margin: 0;
+  }
+  &__text {
+    color: $color-golden;
+    font-size: 16px;
+    display: inline-block;
+    margin: 0 6px;
+  }
+  &__input {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    color: $color-first;
+    background-color: $color-background-gray;
+    border: 1px solid $color-first;
+    text-align: center;
+  }
+  &__button {
+    color: $color-first;
+    appearance: none;
+    border: 1px solid $color-first;
+    background-color: $color-background-gray;
+  }
+  &__page-number {
+    color: $color-first;
+    margin: 0 10px;
+  }
+  &__buttons-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__items {
+    padding: 0;
+    margin: 0;
+  }
+  &__item {
+    list-style-type: none;
+    display: flex;
+    border: 1px solid $color-first;
+    border-top: none;
+    padding: 10px;
+    background-color: $color-background-opacity;
+    justify-content: space-between;
+  }
+  &__number-quantity {
+    border-radius: 50%;
+    font-size: 16px;
+    color: $color-first;
+    border: 2px solid $color-first;
+    background-color: $color-background-dark;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__wrapper-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+  }
+  &__title {
+    margin: 0;
+    color: $color-first-light;
+    font-size: 18px;
+  }
+  &__description {
+    margin: 0;
+    color: $color-first-light;
+    font-size: 14px;
+    text-align: center;
+  }
+  &__line {
+    width: 100%;
+    background-color: $color-first-light;
+    display: block;
+  }
+  &__info-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__info {
+    margin-top: 6px;
+  }
+  &__number {
+    font-size: 20px;
+    color: $color-first;
+  }
+  &__price {
+    color: $color-golden;
+    font-size: 22px;
+  }
+}
+
+.summary {
+  width: 500px;
+  max-width: 500px;
+  height: max-content;
+  &__header {
+    background-color: $color-dark;
+    border: 1px solid $color-first;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    color: $color-first;
+    font-size: 22px;
+  }
+  &__wrapper {
+    padding: 10px 10px 15px 10px;
+    background-color: $color-background-opacity;
+    border: 1px solid $color-first;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__text {
+    color: $color-first;
+    font-size: 20px;
+  }
+  &__quantity {
+    color: $color-first-light;
+    font-size: 24px;
+  }
+  &__info {
+    margin: 2px auto;
+  }
+  &__input {
+    background-color: transparent;
+    border-radius: 15px;
+    border: 1px solid $color-first;
+    text-align: center;
+    padding: 3px;
+    color: $color-first;
+    margin-top: 5px;
+    &:focus {
+      outline: none;
+    }
+  }
+  &__test {
+    color: $color-alert;
+    margin: 10px auto;
+  }
+  &__button {
+    color: $color-first-light;
+    background-color: $color-alert;
+    border: 2px solid $color-first;
+    text-align: center;
+    padding: 5px 10px;
+  }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <title>Online-Store</title>
+</head>
+<body class="body">
+  <header class="header">
+    <div class="header__container container">
+      <div class="header__logo logo">
+        <div class="logo__image">🛍</div>
+        <h1 class="logo__name">Online Store</h1>
+      </div>
+
+      <div class="header__price price">
+        <span class="price__text">Cart total:</span>
+        <span class="price__number">€0.00</span>
+      </div>
+
+      <div class="header__cart cart">
+        <img class="cart__image" src="./assets/favicon.ico" alt="cart">
+        <div class="cart__quantity">0</div>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="container page-cart">
+      <div class="cart">
+        <div class="cart__header">
+          <p class="cart__about">Products In Cart</p>
+          <div class="cart__wrapper">
+            <span class="cart__text">ITEMS:</span>
+            <input class="cart__input" type="text" value="3">
+          </div>
+          <div class="cart__wrapper">
+            <span class="cart__text">PAGE:</span>
+            <div class="cart__buttons-wrapper">
+              <button class="cart__button" id="cart-left">&lt;</button>
+              <div class="cart__page-number">1</div>
+              <button class="cart__button" id="cart-right">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <ul class="cart__items">
+          <li class="cart__item">
+            <div class="cart__wrapper-column">
+              <span class="cart__number-quantity">1</span>
+            </div>
+            <div class="cart__wrapper-column">
+              <img class="cart__image" src="https://i.dummyjson.com/data/products/52/thumbnail.jpg">
+            </div>
+            <div class="cart__wrapper-column">
+              <h3 class="cart__title">Royal Blue Premium Watch</h3>
+              <hr class="cart__line">
+              <p class="cart__description">Men Silver Chain Royal Blue Premium Watch Latest Analog Watch</p>
+              <div class="cart__info-wrapper">
+                <div class="cart__info">
+                  <span class="cart__text">Rating:</span><span class="cart__text">4.89</span>
+                </div>
+                <div class="cart__info">
+                  <span class="cart__text">Discount:</span><span class="cart__text">4.89%</span>
+                </div>
+              </div>
+            </div>
+            <div class="cart__wrapper-column">
+              <div class="cart__wrapper">
+                <span class="cart__text">Stock:</span><span class="cart__text">142</span>
+              </div>
+              <div class="cart__buttons-wrapper">
+                <button class="cart__button button button-plus">+</button>
+                <div class="cart__number">1</div>
+                <button class="cart__button button button-minus">-</button>
+              </div>
+              <div class="cart__price">€549.00</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="summary">
+        <div class="summary__header">Summary</div>
+        <div class="summary__wrapper">
+          <div class="summary__info">
+            <span class="summary__text">Products:</span>
+            <span class="summary__quantity">1</span>
+          </div>
+          <div class="summary__info">
+            <span class="summary__text">Total:</span>
+            <span class="summary__quantity">€50.00</span>
+          </div>
+          <input class="summary__input" placeholder="Enter promo code">
+          <span class="summary__test">Promo for test: 'RS', 'EPM'</span>
+          <button class="summary__button">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

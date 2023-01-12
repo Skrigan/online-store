@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <title>Online-Store</title>
+</head>
+<body class="body">
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__logo logo">
+                <div class="logo__image">🛍</div>
+                <h1 class="logo__name">Online Store</h1>
+            </div>
+
+            <div class="header__price price">
+                <span class="price__text">Cart total:</span>
+                <span class="price__number">€0.00</span>
+            </div>
+
+            <div class="header__cart cart">
+                <img class="cart__image" src="./assets/cart.png" alt="cart">
+                <div class="cart__quantity">0</div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+
+        <div class="container container_main flex">
+
+            <div class="filters">
+
+                <div class="filters__buttons">
+                    <button class="button" id="resetFilters">Reset Filters</button>
+                    <button class="button" id="copyLink">Copy Link</button>
+                </div>
+
+                <div class="filters__cards">
+
+                    <div class="filters__wrapper">
+                        <div class="filters__card filters__scroll">
+                            <h3 class="filters__header">Category</h3>
+                            <div class="filters__content" id="categorys">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filters__wrapper">
+                        <div class="filters__card filters__scroll">
+                            <h3 class="filters__header">Brands</h3>
+                            <div class="filters__content"  id="brands">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filters__wrapper">
+                        <div class="filters__card">
+                            <h3 class="filters__header">Price (€)</h3>
+                            <div class="filters__content">
+                                <div class="slider" id="sliderPrice">
+                                    <div class="slider__data"><div></div>⟷<div></div></div>
+                                    <div class="slider__control">
+                                        <input class="slider__input slider__input_first" id="first" type="range" value="" min="" max=""/>
+                                        <input class="slider__input" id="second" type="range" value="" min="" max=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filters__wrapper">
+                        <div class="filters__card">
+                            <h3 class="filters__header">Stock</h3>
+                            <div class="filters__content">
+                                <div class="slider" id="sliderStock">
+                                    <div class="slider__data"><div></div>⟷<div></div></div>
+                                    <div class="slider__control">
+                                        <input class="slider__input slider__input_first" id="first" type="range" value="" min="" max=""/>
+                                        <input class="slider__input" id="second" type="range" value="" min="" max=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="products">
+                <div class="products__header">
+                    <select name="" id="selectSort">
+                        <option disabled selected>Sort options:</option>
+                        <option value="price ASC">Sort by price ASC</option>
+                        <option value="price DESC">Sort by price DESC</option>
+                        <option value="rating ASC">Sort by rating ASC</option>
+                        <option value="rating DESC">Sort by rating DESC</option>
+                        <!-- <option value="">Sort by rating ASC</option>
+                        <option value="">Sort by rating DESC</option>
+                        <option value="">Sort by discount ASC</options>
+                        <option value="">Sort by discount DESC</option> -->
+                    </select>
+
+                    <div class="products__content">
+                        <span class="products__text">Found:</span>
+                        <span class="products__quantity">100</span>
+                    </div>
+
+                    <div class="products__search">
+                        <input class="products__input" type="search" placeholder="Search product">
+                    </div>
+
+                    <div class="products__view view flex">
+                        <div class="view__small">s</div>
+                        <div class="view__big view_active">b</div>
+                    </div>
+                </div>
+
+                <div class="products__wrapper">
+
+                </div>
+
+                <div class="products__not-found">
+                    No products found 😏
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="container page-product">
+
+            <div class="breadcrumbs">
+              <span class="breadcrumbs__item">STORE</span>
+              <span class="breadcrumbs__item" id="prodCategory"></span>
+              <span class="breadcrumbs__item" id="prodBrand"></span>
+              <span class="breadcrumbs__item" id="prodTitle"></span>
+            </div>
+      
+            <div class="single-product__header" id="prodHeader"></div>
+            <div class="single-product__body">
+              <!-- <div class="single-product__wrapper flex">
+                <img src="https://i.dummyjson.com/data/products/63/1.jpg" alt="" class="single-product__image_little">
+                <img src="https://i.dummyjson.com/data/products/63/1.jpg" alt="" class="single-product__image_little">
+                <img src="https://i.dummyjson.com/data/products/63/1.jpg" alt="" class="single-product__image_little">
+                <img src="https://i.dummyjson.com/data/products/63/1.jpg" alt="" class="single-product__image_little">
+              </div> -->
+              <div class="single-product__wrapper align-center">
+                <div id="prodImg" class="single-product__image_big"></div>
+              </div>
+              <div class="single-product__wrapper">
+                <div class="single-product__item">
+                  <div class="single-product__description">Description:</div>
+                  <div class="single-product__text" id="prodDescription">Men Silver Chain Royal Blue Premium Watch Latest Analog Watch</div>
+                </div>
+      
+                <div class="single-product__item">
+                  <div class="single-product__description">Discount Percentage:</div>
+                  <div class="single-product__text" id="prodPercentage"></div>
+                </div>
+      
+                <div class="single-product__item">
+                  <div class="single-product__description">Rating:</div>
+                  <div class="single-product__text" id="prodRating"></div>
+                </div>
+      
+                <div class="single-product__item">
+                  <div class="single-product__description">Stock:</div>
+                  <div class="single-product__text" id="prodStock"></div>
+                </div>
+      
+                <div class="single-product__item">
+                  <div class="single-product__description">Brand:</div>
+                  <div class="single-product__text" id="prodSecondBrand"></div>
+                </div>
+      
+                <div class="single-product__item">
+                  <div class="single-product__description">Category:</div>
+                  <div class="single-product__text" id="prodSecondCategory"></div>
+                </div>
+      
+              </div>
+              <div class="single-product__wrapper align-center">
+                <span class="single-product__price" id="prodPrice"></span>
+                <button class="single-product__button">ADD TO CART</button>
+                <button class="single-product__button">BUY NOW</button>
+              </div>
+            </div>
+          </div>
+    </main>
+
+    <template id="sourceItemTemp">
+        <div class="product">
+            <div id="name" class="product__header"></div>
+            <div class="product__context">
+                <p class="product__wrapper">
+                    <span class="product__info">Category:</span>
+                    <span id="category" class="product__text"></span>
+                </p>
+                <p class="product__wrapper">
+                    <span class="product__info">Brand:</span>
+                    <span id="brand" class="product__text"></span>
+                </p>
+                <p class="product__wrapper">
+                    <span class="product__info">Price:</span>
+                    <span id="price" class="product__text"></span>
+                </p>
+                <!-- !!! -->
+                <p class="product__wrapper">
+                    <span class="product__info">Rating:</span>
+                    <span id="rating" class="product__text"></span>
+                </p>
+                <!-- !!! -->
+                <p class="product__wrapper">
+                    <span class="product__info">Stock:</span>
+                    <span id="stock" class="product__text"></span>
+                </p>
+            </div>
+            <div class="product__buttons flex">
+                <div class="product__button button">add to cart</div>
+                <div class="product__button button" id="buttonDetails">details</div>
+            </div>
+        </div>
+    </template>
+
+    <template id="filterListTemp">
+        <div class="filters__list">
+            <div class="filters__checkbox">
+                <input class="filters__input" type="checkbox" id="smartphones" name=""
+                    value="" />
+                <label class="filters__label" for=""></label>
+            </div>
+            <span class="filters__quantity">(<span class="filters__quantity_all"></span>)</span>
+            <!-- <span class="filters__quantity">(<span class="filters__quantity_current">?</span>/<span class="filters__quantity_all"></span>)</span> -->
+        </div>
+    </template>
+
+</body>
+</html>

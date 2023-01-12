@@ -1,0 +1,23 @@
+@import '~normalize.css';
+
+* {
+	box-sizing: border-box;
+}
+
+@import '../src/sass/abstracts/variables';
+@import '../src/sass/base/helpers';
+
+@import '../src/sass/components/buttons';
+
+@import '../src/sass/components/logo';
+@import '../src/sass/components/modal';
+@import '../src/sass/components/cards';
+@import '../src/sass/components/products';
+@import '../src/sass/components/breadcrumbs';
+@import '../src/sass/components/sliders';
+
+@import '../src/sass/layout/404';
+@import '../src/sass/layout/cart';
+@import '../src/sass/layout/product';
+@import '../src/sass/layout/header';
+@import '../src/sass/layout/footer';
