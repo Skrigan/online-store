@@ -1,4 +1,5 @@
 import json from './product.json';
+import Listeners from './listeners';
 
 type Product = {
     category: string;
@@ -7,6 +8,9 @@ type Product = {
     price: number;
     stock: number;
     images: string[];
+    description: string;
+    discountPercentage: number;
+    rating: number;
 };
 
 export class Print {
@@ -24,7 +28,7 @@ export class Print {
         const prices = new Set<number>();
         const stocks = new Set<number>();
         //подсчёт всеx категорий брэндов цен и стоков и печать карточек/////////////////////////////////////////////
-        json.forEach((item) => {
+        json.forEach((item, index) => {
             categorys.has(item.category)
                 ? categorys.set(item.category, Number(categorys.get(item.category)) + 1)
                 : categorys.set(item.category, 1);
@@ -35,6 +39,9 @@ export class Print {
             stocks.add(item.stock);
             const clone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
             (clone.querySelector('#category') as HTMLElement).textContent = item.category;
+            const button = clone.querySelector('#buttonDetails') as HTMLElement;
+            button.setAttribute('data-index', String(index));
+            button.onclick = (e: Event) => window.location.hash = `#product?id=${(e.currentTarget as HTMLElement).getAttribute('data-index')}`;
             (clone.querySelector('#brand') as HTMLElement).textContent = item.brand;
             (clone.querySelector('#name') as HTMLElement).textContent = item.title;
             (clone.querySelector('#price') as HTMLElement).textContent = String(item.price);
@@ -70,9 +77,8 @@ export class Print {
                     ?.firstElementChild as HTMLElement).textContent = `${arr[0]}`;
             } else {
                 item.setAttribute('value', `${arr.length - 1}`);
-                (item.parentNode?.parentNode?.firstElementChild?.lastElementChild as HTMLElement).textContent = `${
-                    arr[arr.length - 1]
-                }`;
+                (item.parentNode?.parentNode?.firstElementChild?.lastElementChild as HTMLElement).textContent = `${arr[arr.length - 1]
+                    }`;
             }
         };
         sliderPrice.querySelectorAll('input').forEach((item, index) => sliderSetup(item, index, this.prices));

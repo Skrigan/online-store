@@ -129,16 +129,17 @@
             </div>
         </div>
 
+
         <div class="container page-product">
 
             <div class="breadcrumbs">
               <span class="breadcrumbs__item">STORE</span>
-              <span class="breadcrumbs__item">MENS-WATCHES</span>
-              <span class="breadcrumbs__item">SKMEI 9117</span>
-              <span class="breadcrumbs__item">ROYAL BLUE PREMIUM WATCH</span>
+              <span class="breadcrumbs__item" id="prodCategory"></span>
+              <span class="breadcrumbs__item" id="prodBrand"></span>
+              <span class="breadcrumbs__item" id="prodTitle"></span>
             </div>
       
-            <div class="single-product__header">Royal Blue Premium Watch</div>
+            <div class="single-product__header" id="prodHeader"></div>
             <div class="single-product__body">
               <!-- <div class="single-product__wrapper flex">
                 <img src="https://i.dummyjson.com/data/products/63/1.jpg" alt="" class="single-product__image_little">
@@ -147,42 +148,42 @@
                 <img src="https://i.dummyjson.com/data/products/63/1.jpg" alt="" class="single-product__image_little">
               </div> -->
               <div class="single-product__wrapper align-center">
-                <img src="https://i.dummyjson.com/data/products/63/1.jpg" alt="" class="single-product__image_big">
+                <div id="prodImg" class="single-product__image_big"></div>
               </div>
               <div class="single-product__wrapper">
                 <div class="single-product__item">
                   <div class="single-product__description">Description:</div>
-                  <div class="single-product__text">Men Silver Chain Royal Blue Premium Watch Latest Analog Watch</div>
+                  <div class="single-product__text" id="prodDescription">Men Silver Chain Royal Blue Premium Watch Latest Analog Watch</div>
                 </div>
       
                 <div class="single-product__item">
                   <div class="single-product__description">Discount Percentage:</div>
-                  <div class="single-product__text">2.56</div>
+                  <div class="single-product__text" id="prodPercentage"></div>
                 </div>
       
                 <div class="single-product__item">
                   <div class="single-product__description">Rating:</div>
-                  <div class="single-product__text">2.56</div>
+                  <div class="single-product__text" id="prodRating"></div>
                 </div>
       
                 <div class="single-product__item">
                   <div class="single-product__description">Stock:</div>
-                  <div class="single-product__text">2.56</div>
+                  <div class="single-product__text" id="prodStock"></div>
                 </div>
       
                 <div class="single-product__item">
                   <div class="single-product__description">Brand:</div>
-                  <div class="single-product__text">2.56</div>
+                  <div class="single-product__text" id="prodSecondBrand"></div>
                 </div>
       
                 <div class="single-product__item">
                   <div class="single-product__description">Category:</div>
-                  <div class="single-product__text">2.56</div>
+                  <div class="single-product__text" id="prodSecondCategory"></div>
                 </div>
       
               </div>
               <div class="single-product__wrapper align-center">
-                <span class="single-product__price">€50.00</span>
+                <span class="single-product__price" id="prodPrice"></span>
                 <button class="single-product__button">ADD TO CART</button>
                 <button class="single-product__button">BUY NOW</button>
               </div>
@@ -219,7 +220,7 @@
             </div>
             <div class="product__buttons flex">
                 <div class="product__button button">add to cart</div>
-                <div class="product__button button">details</div>
+                <div class="product__button button" id="buttonDetails">details</div>
             </div>
         </div>
     </template>
