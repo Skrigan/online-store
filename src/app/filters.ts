@@ -1,45 +1,63 @@
-export class Filters {
-    // [0] - categorys, [1] - brands, [2] - min, max price, [3] - min, max stock, [4] - text search
-    filters: [string[], string[], number[], number[], string];
+type filtersObj = {
+    categorys: string[];
+    brands: string[];
+    price: number[];
+    stock: number[];
+    text: string;
+};
 
-    constructor() {
-        this.filters = [[], [], [], [], ''];
+export class Filters {
+    //price[0] = min, price[1] = max; stock[0] = min, stock[1] = max
+    filters: filtersObj = {
+        categorys: [],
+        brands: [],
+        price: [],
+        stock: [],
+        text: '',
+    };
+
+    clearFilters() {
+        this.filters['categorys'] = [];
+        this.filters['brands'] = [];
+        this.filters['price'] = [];
+        this.filters['stock'] = [];
+        this.filters['text'] = '';
     }
 
     addCategory(category: string) {
-        this.filters[0].push(category);
+        this.filters['categorys'].push(category);
         this.view();
     }
 
     removeCategory(category: string) {
-        this.filters[0] = this.filters[0].filter((item) => item !== category);
+        this.filters['categorys'] = this.filters['categorys'].filter((item) => item !== category);
         this.view();
     }
 
     addBrand(brand: string) {
-        this.filters[1].push(brand);
+        this.filters['brands'].push(brand);
         this.view();
     }
 
     removeBrand(brand: string) {
-        this.filters[1] = this.filters[1].filter((item) => item !== brand);
+        this.filters['brands'] = this.filters['brands'].filter((item) => item !== brand);
         this.view();
     }
 
     price(min: number, max: number) {
-        this.filters[2][0] = min;
-        this.filters[2][1] = max;
+        this.filters['price'][0] = min;
+        this.filters['price'][1] = max;
         this.view();
     }
 
     stock(min: number, max: number) {
-        this.filters[3][0] = min;
-        this.filters[3][1] = max;
+        this.filters['stock'][0] = min;
+        this.filters['stock'][1] = max;
         this.view();
     }
 
     textSearch(str: string) {
-        this.filters[4] = str;
+        this.filters['text'] = str;
         this.view();
     }
 
@@ -53,39 +71,39 @@ export class Filters {
             const cardPrice = Number((card.querySelector('#price') as HTMLElement).textContent);
             const cardRating = Number((card.querySelector('#rating') as HTMLElement).textContent);
             const cardStock = Number((card.querySelector('#stock') as HTMLElement).textContent);
-            if (this.filters[0].length !== 0) {
-                if (!this.filters[0].includes(cardCategory)) {
+            if (this.filters['categorys'].length !== 0) {
+                if (!this.filters['categorys'].includes(cardCategory)) {
                     (card as HTMLElement).style.display = 'none';
                     return;
                 }
             }
-            if (this.filters[1].length !== 0) {
-                if (!this.filters[1].includes(cardBrand)) {
+            if (this.filters['brands'].length !== 0) {
+                if (!this.filters['brands'].includes(cardBrand)) {
                     (card as HTMLElement).style.display = 'none';
                     return;
                 }
             }
-            if (this.filters[2].length !== 0) {
-                if (cardPrice < this.filters[2][0] || cardPrice > this.filters[2][1]) {
+            if (this.filters['price'].length !== 0) {
+                if (cardPrice < this.filters['price'][0] || cardPrice > this.filters['price'][1]) {
                     (card as HTMLElement).style.display = 'none';
                     return;
                 }
             }
-            if (this.filters[3].length !== 0) {
-                if (cardStock < this.filters[3][0] || cardStock > this.filters[3][1]) {
+            if (this.filters['stock'].length !== 0) {
+                if (cardStock < this.filters['stock'][0] || cardStock > this.filters['stock'][1]) {
                     (card as HTMLElement).style.display = 'none';
                     return;
                 }
             }
-            if (this.filters[4].length !== 0) {
+            if (this.filters['text'].length !== 0) {
                 const stringCompare = (str1: string, str2: string) => str1.toLowerCase().includes(str2.toLowerCase());
                 if (
                     !(
-                        stringCompare(cardCategory, this.filters[4]) ||
-                        stringCompare(cardBrand, this.filters[4]) ||
-                        stringCompare(String(cardRating), this.filters[4]) ||
-                        stringCompare(String(cardPrice), this.filters[4]) ||
-                        stringCompare(String(cardStock), this.filters[4])
+                        stringCompare(cardCategory, this.filters['text']) ||
+                        stringCompare(cardBrand, this.filters['text']) ||
+                        stringCompare(String(cardRating), this.filters['text']) ||
+                        stringCompare(String(cardPrice), this.filters['text']) ||
+                        stringCompare(String(cardStock), this.filters['text'])
                     )
                 ) {
                     (card as HTMLElement).style.display = 'none';
