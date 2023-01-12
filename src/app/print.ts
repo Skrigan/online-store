@@ -1,5 +1,4 @@
 import json from './product.json';
-import Listeners from './listeners';
 
 type Product = {
     category: string;
@@ -41,7 +40,9 @@ export class Print {
             (clone.querySelector('#category') as HTMLElement).textContent = item.category;
             const button = clone.querySelector('#buttonDetails') as HTMLElement;
             button.setAttribute('data-index', String(index));
-            button.onclick = (e: Event) => window.location.hash = `#product?id=${(e.currentTarget as HTMLElement).getAttribute('data-index')}`;
+            button.onclick = (e: Event): void => {
+                window.location.hash = `#product?id=${(e.currentTarget as HTMLElement).getAttribute('data-index')}`;
+            };
             (clone.querySelector('#brand') as HTMLElement).textContent = item.brand;
             (clone.querySelector('#name') as HTMLElement).textContent = item.title;
             (clone.querySelector('#price') as HTMLElement).textContent = String(item.price);
@@ -77,8 +78,9 @@ export class Print {
                     ?.firstElementChild as HTMLElement).textContent = `${arr[0]}`;
             } else {
                 item.setAttribute('value', `${arr.length - 1}`);
-                (item.parentNode?.parentNode?.firstElementChild?.lastElementChild as HTMLElement).textContent = `${arr[arr.length - 1]
-                    }`;
+                (item.parentNode?.parentNode?.firstElementChild?.lastElementChild as HTMLElement).textContent = `${
+                    arr[arr.length - 1]
+                }`;
             }
         };
         sliderPrice.querySelectorAll('input').forEach((item, index) => sliderSetup(item, index, this.prices));

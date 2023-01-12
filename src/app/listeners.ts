@@ -38,29 +38,53 @@ export class Listeners {
             console.log('hash = ', window.location.hash);
             console.log('href = ', window.location);
             const hash: string[] = window.location.hash.split('=');
-            const productIndex: number = Number(hash[1]);
+            const productIndex = Number(hash[1]);
             const maxIndex = this.product.length - 1;
             if (hash[0] === '#product?id' && productIndex <= maxIndex && productIndex >= 0) {
                 containerMain.style.display = 'none';
-                (pageProduct.querySelector('#prodCategory') as HTMLElement).textContent = this.product[productIndex]['category'].toUpperCase();
-                (pageProduct.querySelector('#prodBrand') as HTMLElement).textContent = this.product[productIndex]['brand'].toUpperCase();
-                (pageProduct.querySelector('#prodTitle') as HTMLElement).textContent = this.product[productIndex]['title'].toUpperCase();
-                (pageProduct.querySelector('#prodHeader') as HTMLElement).textContent = this.product[productIndex]['title'].toUpperCase();
-                (pageProduct.querySelector('#prodImg') as HTMLElement).style.backgroundImage = `url(${this.product[productIndex]['images'][0]})`;
+                (pageProduct.querySelector('#prodCategory') as HTMLElement).textContent = this.product[productIndex][
+                    'category'
+                ].toUpperCase();
+                (pageProduct.querySelector('#prodBrand') as HTMLElement).textContent = this.product[productIndex][
+                    'brand'
+                ].toUpperCase();
+                (pageProduct.querySelector('#prodTitle') as HTMLElement).textContent = this.product[productIndex][
+                    'title'
+                ].toUpperCase();
+                (pageProduct.querySelector('#prodHeader') as HTMLElement).textContent = this.product[productIndex][
+                    'title'
+                ].toUpperCase();
+                (pageProduct.querySelector(
+                    '#prodImg',
+                ) as HTMLElement).style.backgroundImage = `url(${this.product[productIndex]['images'][0]})`;
 
-                (pageProduct.querySelector('#prodDescription') as HTMLElement).textContent = this.product[productIndex]['description'];
-                (pageProduct.querySelector('#prodPercentage') as HTMLElement).textContent = String(this.product[productIndex]['discountPercentage']);
-                (pageProduct.querySelector('#prodRating') as HTMLElement).textContent = String(this.product[productIndex]['rating']);
-                (pageProduct.querySelector('#prodStock') as HTMLElement).textContent = String(this.product[productIndex]['stock']);
-                (pageProduct.querySelector('#prodSecondBrand') as HTMLElement).textContent = this.product[productIndex]['brand'];
-                (pageProduct.querySelector('#prodSecondCategory') as HTMLElement).textContent = this.product[productIndex]['category'];
-                (pageProduct.querySelector('#prodPrice') as HTMLElement).textContent = `€${this.product[productIndex]['price']}`;
+                (pageProduct.querySelector('#prodDescription') as HTMLElement).textContent = this.product[productIndex][
+                    'description'
+                ];
+                (pageProduct.querySelector('#prodPercentage') as HTMLElement).textContent = String(
+                    this.product[productIndex]['discountPercentage'],
+                );
+                (pageProduct.querySelector('#prodRating') as HTMLElement).textContent = String(
+                    this.product[productIndex]['rating'],
+                );
+                (pageProduct.querySelector('#prodStock') as HTMLElement).textContent = String(
+                    this.product[productIndex]['stock'],
+                );
+                (pageProduct.querySelector('#prodSecondBrand') as HTMLElement).textContent = this.product[productIndex][
+                    'brand'
+                ];
+                (pageProduct.querySelector('#prodSecondCategory') as HTMLElement).textContent = this.product[
+                    productIndex
+                ]['category'];
+                (pageProduct.querySelector(
+                    '#prodPrice',
+                ) as HTMLElement).textContent = `€${this.product[productIndex]['price']}`;
                 pageProduct.style.display = 'block';
             } else {
                 containerMain.style.display = 'flex';
                 pageProduct.style.display = 'none';
             }
-        }
+        };
         hashChange();
         window.addEventListener('hashchange', () => hashChange());
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
