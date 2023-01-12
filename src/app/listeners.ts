@@ -1,8 +1,17 @@
 import Filters from './filters';
 const filters = new Filters();
 
+type Product = {
+    category: string;
+    brand: string;
+    title: string;
+    price: number;
+    stock: number;
+    images: string[];
+};
+
 export class Listeners {
-    constructor(public prices: number[], public stocks: number[]) {}
+    constructor(public prices: number[], public stocks: number[], public product: Product[]) {}
     addListeners() {
         const categorys = document.querySelector('#categorys') as HTMLElement;
         const brands = document.querySelector('#brands') as HTMLElement;
@@ -10,32 +19,57 @@ export class Listeners {
         const sliderStock = document.querySelector('#sliderStock') as HTMLElement;
         const productsWrapper = document.querySelector('.products__wrapper') as HTMLElement;
         const allProducts: Element[] = Array.from(productsWrapper.children);
-        const productsInput = document.querySelector('.products__input') as HTMLElement;
+        const productsInput = document.querySelector('.products__input') as HTMLInputElement;
         const selectSort = document.querySelector('#selectSort') as HTMLSelectElement;
         const copyLink = document.querySelector('#copyLink') as HTMLElement;
         const productsView = document.querySelector('.products__view') as HTMLElement;
         const viewsButtons: Element[] = Array.from(productsView.children);
+        const allCategorys: Element[] = Array.from(categorys.children);
+        const allBrands: Element[] = Array.from(brands.children);
+        const resetFilters = document.querySelector('#resetFilters') as HTMLElement;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // const allCategorys: Element[] = Array.from(categorys.children);
-        // const allBrands: Element[] = Array.from(brands.children);
-        // const resetFilters = document.querySelector('#resetFilters') as HTMLElement;
+        // const pageProduct = document.querySelector('.page-product') as HTMLElement;
+        // const containerMain = document.querySelector('.container_main') as HTMLElement;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // const resetFiltersEvent = (): void => {
-        //   allCategorys.forEach((item) => ((item.querySelector('input') as HTMLInputElement).checked = false));
-        //   allBrands.forEach((item) => ((item.querySelector('input') as HTMLInputElement).checked = false));
-        //   filters.filters = [[], [], [], [], ''];
-        //   //killMePls..
-        //   const price1 = sliderPrice.querySelector('#first') as HTMLInputElement;
-        //   const price2 = sliderPrice.querySelector('#second') as HTMLInputElement;
-        //   const stock1 = sliderStock.querySelector('#first') as HTMLInputElement;
-        //   const stock2 = sliderStock.querySelector('#second') as HTMLInputElement;
-        //   price1.value = price1.min;
-        //   price2.value = price2.max;
-        //   stock1.value = stock1.min;
-        //   stock2.value = stock2.max;
-        //   filters.view();
-        // };
-        // resetFilters.addEventListener('click', () => resetFiltersEvent());
+        // const hashChange = () => {
+        //     console.log('hash = ', window.location.hash);
+        //     console.log('href = ', window.location);
+        //     const hash: string[] = window.location.hash.split('=');
+        //     const productIndex: number = Number(hash[1]);
+        //     const maxIndex = this.product.length - 1;
+        //     if (hash[0] === '#product?id' && productIndex <= maxIndex && productIndex >= 0) {
+        //         containerMain.style.display = 'none';
+        //         pageProduct.style.display = 'block';
+        //     } else {
+        //         containerMain.style.display = 'flex';
+        //         pageProduct.style.display = 'none';
+        //     }
+        // }
+        // hashChange();
+        // window.addEventListener('hashchange', () => hashChange());
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        const resetFiltersEvent = (): void => {
+            allCategorys.forEach((item) => ((item.querySelector('input') as HTMLInputElement).checked = false));
+            allBrands.forEach((item) => ((item.querySelector('input') as HTMLInputElement).checked = false));
+            filters.clearFilters();
+            //   //killMePls..
+            const price1 = sliderPrice.querySelector('#first') as HTMLInputElement;
+            const price2 = sliderPrice.querySelector('#second') as HTMLInputElement;
+            const stock1 = sliderStock.querySelector('#first') as HTMLInputElement;
+            const stock2 = sliderStock.querySelector('#second') as HTMLInputElement;
+            price1.value = price1.min;
+            price2.value = price2.max;
+            stock1.value = stock1.min;
+            stock2.value = stock2.max;
+            priceValue1 = Number(price1.min);
+            priceValue2 = Number(price2.max);
+            stockValue1 = Number(stock1.min);
+            stockValue2 = Number(stock2.max);
+            productsInput.value = '';
+            comparingSliderValues(sliderPrice, Number(price1.min), Number(price2.max), this.prices, filters.price);
+            comparingSliderValues(sliderStock, Number(stock1.min), Number(stock2.max), this.stocks, filters.stock);
+        };
+        resetFilters.addEventListener('click', () => resetFiltersEvent());
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         const copyLinkEvent = (): void => {
             const copyTextarea = document.createElement('textarea');
@@ -53,6 +87,7 @@ export class Listeners {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         const valueForSort = (card: Element, option: string): number =>
             Number((card.querySelector(`#${option}`) as HTMLElement).textContent);
+
         const selectSortEvent = (e: Event): void => {
             const target = <HTMLSelectElement>e.target;
             const optionValues: string[] = target.value.split(' ');
@@ -86,10 +121,6 @@ export class Listeners {
         };
         productsInput.addEventListener('input', (e) => productsInputEvent(e));
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        let priceValue1 = Number((sliderPrice.querySelector('#first') as HTMLInputElement).value);
-        let priceValue2 = Number((sliderPrice.querySelector('#second') as HTMLInputElement).value);
-        let stockValue1 = Number((sliderStock.querySelector('#first') as HTMLInputElement).value);
-        let stockValue2 = Number((sliderStock.querySelector('#second') as HTMLInputElement).value);
         categorys.addEventListener('click', (e) => categorysEvent(e));
         brands.addEventListener('click', (e) => brandsEvent(e));
         function categorysEvent(e: Event): void {
@@ -113,52 +144,40 @@ export class Listeners {
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        let priceValue1 = Number((sliderPrice.querySelector('#first') as HTMLInputElement).value);
+        let priceValue2 = Number((sliderPrice.querySelector('#second') as HTMLInputElement).value);
+        let stockValue1 = Number((sliderStock.querySelector('#first') as HTMLInputElement).value);
+        let stockValue2 = Number((sliderStock.querySelector('#second') as HTMLInputElement).value);
+        const comparingSliderValues = (
+            element: HTMLElement,
+            value1: number,
+            value2: number,
+            arr: number[],
+            callback: (value1: number, value2: number) => void,
+        ) => {
+            if (value2 >= value1) {
+                (element.firstElementChild?.firstElementChild as HTMLElement).textContent = String(arr[value1]);
+                (element.firstElementChild?.lastElementChild as HTMLElement).textContent = String(arr[value2]);
+                callback.call(filters, arr[value1], arr[value2]);
+            } else {
+                (element.firstElementChild?.firstElementChild as HTMLElement).textContent = String(arr[value2]);
+                (element.firstElementChild?.lastElementChild as HTMLElement).textContent = String(arr[value1]);
+                callback.call(filters, arr[value2], arr[value1]);
+            }
+        };
         const sliderPriceEvent = (e: Event): void => {
             const target = <HTMLInputElement>e.target;
             if (target.id === 'first') priceValue1 = Number(target.value);
             else priceValue2 = Number(target.value);
-            if (priceValue2 >= priceValue1) {
-                (sliderPrice.firstElementChild?.firstElementChild as HTMLElement).textContent = String(
-                    this.prices[priceValue1],
-                );
-                (sliderPrice.firstElementChild?.lastElementChild as HTMLElement).textContent = String(
-                    this.prices[priceValue2],
-                );
-                filters.price(this.prices[priceValue1], this.prices[priceValue2]);
-            } else {
-                (sliderPrice.firstElementChild?.firstElementChild as HTMLElement).textContent = String(
-                    this.prices[priceValue2],
-                );
-                (sliderPrice.firstElementChild?.lastElementChild as HTMLElement).textContent = String(
-                    this.prices[priceValue1],
-                );
-                filters.price(this.prices[priceValue2], this.prices[priceValue1]);
-            }
+            comparingSliderValues(sliderPrice, priceValue1, priceValue2, this.prices, filters.price);
         };
         (sliderPrice.querySelector('#first') as HTMLElement).addEventListener('input', (e) => sliderPriceEvent(e));
         (sliderPrice.querySelector('#second') as HTMLElement).addEventListener('input', (e) => sliderPriceEvent(e));
-
         const sliderStockEvent = (e: Event): void => {
             const target = <HTMLInputElement>e.target;
             if (target.id === 'first') stockValue1 = Number(target.value);
             else stockValue2 = Number(target.value);
-            if (stockValue2 >= stockValue1) {
-                (sliderStock.firstElementChild?.firstElementChild as HTMLElement).textContent = String(
-                    this.stocks[stockValue1],
-                );
-                (sliderStock.firstElementChild?.lastElementChild as HTMLElement).textContent = String(
-                    this.stocks[stockValue2],
-                );
-                filters.stock(this.stocks[stockValue1], this.stocks[stockValue2]);
-            } else {
-                (sliderStock.firstElementChild?.firstElementChild as HTMLElement).textContent = String(
-                    this.stocks[stockValue2],
-                );
-                (sliderStock.firstElementChild?.lastElementChild as HTMLElement).textContent = String(
-                    this.stocks[stockValue1],
-                );
-                filters.stock(this.stocks[stockValue2], this.stocks[stockValue1]);
-            }
+            comparingSliderValues(sliderStock, stockValue1, stockValue2, this.stocks, filters.stock);
         };
         (sliderStock.querySelector('#first') as HTMLElement).addEventListener('input', (e) => sliderStockEvent(e));
         (sliderStock.querySelector('#second') as HTMLElement).addEventListener('input', (e) => sliderStockEvent(e));

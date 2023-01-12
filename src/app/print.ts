@@ -46,24 +46,20 @@ export class Print {
         this.prices = Array.from(prices).sort((a, b) => a - b);
         this.stocks = Array.from(stocks).sort((a, b) => a - b);
         //печать всех чекбоксов/////////////////////////////////////////////////////////////////////////////////////
-        for (const item of categorys) {
-            const clone = filterListTemp.content.cloneNode(true) as HTMLElement;
-            (clone.querySelector('.filters__label') as HTMLElement).textContent = item[0];
-            (clone.querySelector('.filters__label') as HTMLElement).setAttribute('for', item[0]);
-            (clone.querySelector('.filters__input') as HTMLElement).setAttribute('id', item[0]);
-            (clone.querySelector('.filters__quantity_all') as HTMLElement).textContent = String(item[1]);
-            (clone.querySelector('.filters__checkbox') as HTMLElement).setAttribute('data-category', item[0]);
-            (document.querySelector('#categorys') as HTMLElement).append(clone);
-        }
-        for (const item of brands) {
-            const clone = filterListTemp.content.cloneNode(true) as HTMLElement;
-            (clone.querySelector('.filters__label') as HTMLElement).textContent = item[0];
-            (clone.querySelector('.filters__label') as HTMLElement).setAttribute('for', item[0]);
-            (clone.querySelector('.filters__input') as HTMLElement).setAttribute('id', item[0]);
-            (clone.querySelector('.filters__quantity_all') as HTMLElement).textContent = String(item[1]);
-            (clone.querySelector('.filters__checkbox') as HTMLElement).setAttribute('data-brand', item[0]);
-            (document.querySelector('#brands') as HTMLElement).append(clone);
-        }
+        const drawCheckboxes = (map: Map<string, number>, dataAttribute: string, containerId: string): void => {
+            const container = document.querySelector(`#${containerId}`) as HTMLElement;
+            for (const item of map) {
+                const clone = filterListTemp.content.cloneNode(true) as HTMLElement;
+                (clone.querySelector('.filters__label') as HTMLElement).textContent = item[0];
+                (clone.querySelector('.filters__label') as HTMLElement).setAttribute('for', item[0]);
+                (clone.querySelector('.filters__input') as HTMLElement).setAttribute('id', item[0]);
+                (clone.querySelector('.filters__quantity_all') as HTMLElement).textContent = String(item[1]);
+                (clone.querySelector('.filters__checkbox') as HTMLElement).setAttribute(dataAttribute, item[0]);
+                container.append(clone);
+            }
+        };
+        drawCheckboxes(categorys, 'data-category', 'categorys');
+        drawCheckboxes(brands, 'data-brand', 'brands');
         //подготовка слайдеров//////////////////////////////////////////////////////////////////////////////////////
         const sliderSetup = (item: HTMLInputElement, index: number, arr: number[]) => {
             item.setAttribute('min', '0');
